@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Baloo Bhaina', Helvetica, sans-serif;
+}
+
+html {
+  background: rgba(174, 175, 205, 0.3);
+}
+
+.row {
+  background: linear-gradient(to right, rgba(51,126,171,.3) 0%,rgba(51,126,171,.3) 50%, rgba(32,80,81,.3) 50%, rgba(32,80,81,.3) 100%);
+  border-top: 3px solid rgba(0,0,0,0.3);
+  border-bottom: 3px solid rgba(0,0,0,0.3);
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-2 {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  position: relative;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}
+.winner {
+  height: 1.3em;
+  transition: .5s;
+}
+
+.choices {
+  list-style: none;
+  padding: 0px;
+}
+
+
+
+.choices li:first-child {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Balanced_Rock.jpg/1920px-Balanced_Rock.jpg");
+}
+
+.choices li:nth-child(2) {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/ANCIENT_SANSKRIT_ON_HEMP_BASED_PAPER._HEMP_WAS_A_COMMON_AND_DURABLE_FIBRE_IN_THE_PRODUCTION_OF_%22RAG%22_PAPER_FROM_200_BCE_TO_THE_1850_AD.jpg/1024px-ANCIENT_SANSKRIT_ON_HEMP_BASED_PAPER._HEMP_WAS_A_COMMON_AND_DURABLE_FIBRE_IN_THE_PRODUCTION_OF_%22RAG%22_PAPER_FROM_200_BCE_TO_THE_1850_AD.jpg");
+}
+
+.choices li:nth-child(3) {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Combination_snips.png/300px-Combination_snips.png");
+}
+
+@media (max-width: 550px){
+  .choices li:nth-child(1), .choices li:nth-child(2), .choices li:nth-child(3) {
+    background-image: none;
+  }
+}
+
+.btn {
+  display: block;
+  margin: 2rem auto;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background: linear-gradient(0deg, #1485C3, #2495d3);
+  cursor: pointer;
+  outline:0;
+}
+
+.choices li {
+  font-size: 20px;
+  padding: 10px;
+  margin: 5px;
+  border: 3px solid #000;
+  line-height: 30px;
+  background: rgba(255,255,255,0.5);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 100%;
+  transition: .5s;
+}
+
+.hover-large li:hover {
+  box-sizing: content-box;
+  font-size: 25px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.hide, ul .hide {
+  background-color: rgba(0,0,0,0.5);
+  overflow: hidden;
+  filter: brightness(30%);
+}
+
+ul .highlight, .highlight {
+  padding: 5px !important;
+  font-size: 25px;
+  background-color: rgba(218,183,6, 0.3);
+  background-position: 90%;
+}
