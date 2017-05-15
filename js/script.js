@@ -1,15 +1,15 @@
-var game = {
-  winner: "",
-  compScore: 0,
-  playerScore: 0,
-  playing: true,
+
+ var winner = "";
+ var compScore = 0;
+ var playerScore = 0;
+ var playing = true;
   
-  rndNum: function(min, max) {
+ function rndNum(min, max) {
     return Math.round(Math.random() * (max - min) + min);
-  },
+  }
   
-  watchInput: function(e){
-    if(game.playing === true && e.target.tagName == "LI"){
+  function watchInput(e){
+    if(playing === true && e.target.tagName == "LI"){
       var playerPick = "";
       if(e.target.id === "player-rock"){
         playerPick = "rock";
@@ -18,24 +18,24 @@ var game = {
       } else if(e.target.id === "player-scissors"){
         playerPick = "scissors";
       }
-      game.battle(playerPick);
+      battle(playerPick);
     }
-  },
+  }
   
-  highlightChoices: function(player, highlight, hide1, hide2){
+  function highlightChoices(player, highlight, hide1, hide2){
     document.querySelector("#" + player + "-" + highlight).classList.add("highlight");
     document.querySelector("#" + player + "-" + hide1).classList.add("hide");
     document.querySelector("#" + player + "-" + hide2).classList.add("hide");
-    game.playing = false;
+    playing = false;
     setTimeout(function(){
       document.querySelector("#" + player + "-" + highlight).classList.remove("highlight");
       document.querySelector("#" + player + "-" + hide1).classList.remove("hide");
       document.querySelector("#" + player + "-" + hide2).classList.remove("hide");
-      game.playing = true;
+      playing = true;
     }, 1000);
-  },
+  }
   
-  hightlightWinner: function(winner) {
+  function hightlightWinner(winner) {
     
     var playerWin = document.querySelector("#player-win");
     var compWin = document.querySelector("#comp-win");
@@ -66,74 +66,74 @@ var game = {
       }
       
     }, 1000);
-  },
+  }
   
-  battle: function(playerPick){
+  function battle(playerPick){
     var choices = ["rock","paper","scissors"];
-    var computerPick = choices[game.rndNum(0,2)];
+    var computerPick = choices[rndNum(0,2)];
     
     if(playerPick === "rock"){
-      this.highlightChoices("player", "rock", "paper", "scissors");
+      highlightChoices("player", "rock", "paper", "scissors");
       
       if(computerPick === "rock"){
-        this.highlightChoices("comp", "rock", "paper", "scissors");
-        game.winner = "tie";
+        highlightChoices("comp", "rock", "paper", "scissors");
+        winner = "tie";
       } else if(computerPick === "paper"){
-        this.highlightChoices("comp", "paper", "rock", "scissors");
-        game.winner = "computer";
-        game.compScore++;
+        highlightChoices("comp", "paper", "rock", "scissors");
+        winner = "computer";
+        compScore++;
       } else {
-        this.highlightChoices("comp", "scissors", "rock", "paper");
-        game.winner = "player";
-        game.playerScore++;
+        highlightChoices("comp", "scissors", "rock", "paper");
+        winner = "player";
+        playerScore++;
       }
     } else if(playerPick === "paper"){
       
-      this.highlightChoices("player", "paper", "rock", "scissors");
+      highlightChoices("player", "paper", "rock", "scissors");
       
       if(computerPick === "rock"){
-        this.highlightChoices("comp", "rock", "paper", "scissors");
-        game.winner = "player";
-        game.playerScore++;
+        highlightChoices("comp", "rock", "paper", "scissors");
+        winner = "player";
+        playerScore++;
       } else if(computerPick === "paper"){
-        this.highlightChoices("comp", "paper", "rock", "scissors");
-        game.winner = "tie";
+        highlightChoices("comp", "paper", "rock", "scissors");
+        winner = "tie";
       } else if(computerPick === "scissors") {
-        this.highlightChoices("comp", "scissors", "rock", "paper");
-        game.winner = "computer";
-        game.compScore++;
+        highlightChoices("comp", "scissors", "rock", "paper");
+        winner = "computer";
+        compScore++;
       }
     } else if(playerPick === "scissors"){
-      this.highlightChoices("player", "scissors", "rock", "paper");
+      highlightChoices("player", "scissors", "rock", "paper");
       
       if(computerPick === "rock"){
-        this.highlightChoices("comp", "rock", "paper", "scissors");
-        game.winner = "computer";
-        game.compScore++;
+        highlightChoices("comp", "rock", "paper", "scissors");
+        winner = "computer";
+        compScore++;
       } else if(computerPick === "paper"){
-        this.highlightChoices("comp", "paper", "rock", "scissors");
-        game.winner = "player";
-        game.playerScore++;
+        highlightChoices("comp", "paper", "rock", "scissors");
+        winner = "player";
+        playerScore++;
       } else if(computerPick === "scissors"){
-        this.highlightChoices("comp", "scissors", "rock", "paper");
-        game.winner = "tie";
+        highlightChoices("comp", "scissors", "rock", "paper");
+        winner = "tie";
       }
     }
 
     document.querySelector("#player-score").innerHTML = this.playerScore;
     document.querySelector("#comp-score").innerHTML = this.compScore;
     
-    game.hightlightWinner(game.winner);
-  },
+    hightlightWinner(winner);
+  }
   
-  startGame: function(){
+  function startGame(){
 
     document.querySelector('#main-btn').innerHTML = "Restart";
 
-    game.winner = "";
-    game.compScore = 0;
-    game.playerScore = 0;
-    game.playing = true;
+    winner = "";
+    compScore = 0;
+    playerScore = 0;
+    playing = true;
 
     document.querySelector("#game-board").innerHTML = `
       <div class="col-2">
@@ -157,9 +157,9 @@ var game = {
         </ul>
       </div>`;
 
-    document.querySelector("#player-choices").addEventListener("click", game.watchInput, false);
+    document.querySelector("#player-choices").addEventListener("click", watchInput, false);
 
   }
-};
 
-document.querySelector('#main-btn').addEventListener('click', game.startGame, false);
+
+document.querySelector('#main-btn').addEventListener('click', startGame, false);
